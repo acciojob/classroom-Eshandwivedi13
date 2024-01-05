@@ -47,6 +47,7 @@ public class StudentRepository {
         return studentsOfATeacher.getOrDefault(teacherName, new ArrayList<>());
     }
     public List<String> getAllStudents(){
+        studentsList = new ArrayList<>();
         for(String student : studentDb.keySet()){
             studentsList.add(studentDb.get(student).getName());
         }
