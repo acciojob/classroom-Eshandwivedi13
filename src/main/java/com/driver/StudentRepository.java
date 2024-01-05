@@ -140,11 +140,11 @@ public class StudentRepository {
     {
         return Tmap.get(name);
     }
-    public  List<String> getStudentByTeacherName(String Tname)
+    public  List<String> getStudentsByTeacherName(String Tname)
     {
         return new ArrayList<>(STmap.get(Tname));
     }
-    public List<String> getAllStudent()
+    public List<String> getAllStudents()
     {
         List<String>SL=new ArrayList<>();
         for(String s:Smap.keySet())
@@ -155,7 +155,7 @@ public class StudentRepository {
     }
 
     /* Delete Method */
-    public void deleteTeacherName(String Tname)
+    public void deleteTeacherByName(String Tname)
     {
         Tmap.remove(Tname);
         if(STmap.containsKey(Tname))
@@ -169,7 +169,7 @@ public class StudentRepository {
         }
     }
 
-    public void deleteAllTeacher()
+    public void deleteAllTeachers()
     {
         HashSet<String> std_hash = new HashSet<>();
 
