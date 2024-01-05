@@ -9,4 +9,16 @@ public class Student {
     public Student(){
 
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public double getAverageScore() {
+        return averageScore;
+    }
 }

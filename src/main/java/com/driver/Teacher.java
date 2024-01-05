@@ -8,6 +8,18 @@ public class Teacher {
 
     private int age;
 
+    public String getName() {
+        return name;
+    }
+
+    public int getNumberOfStudents() {
+        return numberOfStudents;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
     public Teacher() {
 
     }
