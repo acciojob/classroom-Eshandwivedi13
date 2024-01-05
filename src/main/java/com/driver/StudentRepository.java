@@ -57,14 +57,14 @@ public class StudentRepository {
         if(!teacherDb.containsKey(teacher)){
             return;
         }
-        teacherDb.remove(teacher);
+        teacherDb.remove(teacher);//teacher dead
         if(studentsOfATeacher.containsKey(teacher))
         {
             List<String> StudList=studentsOfATeacher.get(teacher);
-            studentsOfATeacher.remove(teacher);
+            studentsOfATeacher.remove(teacher);//no more a student of that teacher
             for(String student :StudList)
             {
-                studentsOfATeacher.remove(student);
+                studentDb.remove(student);//no more even a student, cuz that teacher is dead
             }
         }
 //        studentsOfATeacher.remove(teacher);
@@ -77,13 +77,13 @@ public class StudentRepository {
         studentsOfATeacher.clear();
         studentDb.clear();
 
-//        HashSet<String> std_hash = new HashSet<>();
-//        for(String teacher : studentsOfATeacher.keySet()) {
-//            std_hash.addAll(studentsOfATeacher.get(teacher));
-//        }
-//        for(String student : std_hash) {
-//            studentDb.remove(student);
-//        }
+        HashSet<String> std_hash = new HashSet<>();
+        for(String teacher : studentsOfATeacher.keySet()) {
+            std_hash.addAll(studentsOfATeacher.get(teacher));
+        }
+        for(String student : std_hash) {
+            studentDb.remove(student);
+        }
 
     }
 }
