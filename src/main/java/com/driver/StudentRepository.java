@@ -1,22 +1,16 @@
 package com.driver;
-
 import org.springframework.stereotype.Repository;
-
 import java.util.*;
-//import java.util.HashMap;
-
 @Repository
 public class StudentRepository {
     private HashMap<String, Student> studentDb = new HashMap<>();
     private HashMap<String, Teacher> teacherDb = new HashMap<>();
     private HashMap<String, List<String>> studentsOfATeacher = new HashMap<>();//it could also be a list of Student(obj)
 
-//    private List<String> studentsList = new ArrayList<>();
     public void addStudent(Student student){
         String dbKey = student.getName();
         studentDb.put(dbKey, student);
     }
-
     public void addTeacher(Teacher teacher){
         String dbKey = teacher.getName();
         teacherDb.put(dbKey, teacher);
@@ -69,7 +63,6 @@ public class StudentRepository {
                 studentDb.remove(student);//no more even a student, cuz that teacher is dead
             }
         }
-//        studentsOfATeacher.remove(teacher);
     }
     public void deleteAllTeachers(){
 //        if(teacherDb.isEmpty()){
@@ -78,13 +71,13 @@ public class StudentRepository {
 //        teacherDb.clear();
 //        studentsOfATeacher.clear();
 //        studentDb.clear();
-        HashSet<String> std_hash = new HashSet<>();
+        HashSet<String> allStudentsOfTeachers = new HashSet<>();//means sabhi teachers jo delete ho rhe, unke students store krdo idhar
         for(String teacher : studentsOfATeacher.keySet()) {
-            std_hash.addAll(studentsOfATeacher.get(teacher));//addAll lists of string ko, as a string add krta, matlab har teacher ke listOfStudents udao
+            allStudentsOfTeachers.addAll(studentsOfATeacher.get(teacher));//addAll lists of string ko, as a string add krta, matlab har teacher ke listOfStudents udao
         }
         teacherDb.clear();
         studentsOfATeacher.clear();
-        for(String student : std_hash) {
+        for(String student : allStudentsOfTeachers) {
             studentDb.remove(student);//students uda rhe jinke pas ab teacher nhi h
         }
 
