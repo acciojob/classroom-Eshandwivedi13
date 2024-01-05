@@ -23,7 +23,7 @@ public class StudentRepository {
     }
     public void addStudentTeacherPair(String studentName, String teacherName){
         List<String> temp = studentsOfATeacher.getOrDefault(teacherName, new ArrayList<>());
-        if(studentDb.containsKey(studentName) && teacherDb.containsKey(teacherName)){
+        if(!studentDb.containsKey(studentName) || !teacherDb.containsKey(teacherName)){
             return;
         }
         temp.add(studentName);
