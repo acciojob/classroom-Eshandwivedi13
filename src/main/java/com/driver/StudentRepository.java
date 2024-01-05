@@ -23,7 +23,7 @@ public class StudentRepository {
     }
     public void addStudentTeacherPair(String studentName, String teacherName){
         List<String> temp = studentsOfATeacher.getOrDefault(teacherName, new ArrayList<>());
-        if(temp.contains(studentName)){
+        if(studentDb.containsKey(studentName) && teacherDb.containsKey(teacherName)){
             return;
         }
         temp.add(studentName);
@@ -57,7 +57,16 @@ public class StudentRepository {
             return;
         }
         teacherDb.remove(teacher);
-        studentsOfATeacher.remove(teacher);
+        if(studentsOfATeacher.containsKey(teacher))
+        {
+            List<String> StudList=studentsOfATeacher.get(teacher);
+            studentsOfATeacher.remove(teacher);
+            for(String student :StudList)
+            {
+                studentsOfATeacher.remove(student);
+            }
+        }
+//        studentsOfATeacher.remove(teacher);
     }
     public void deleteAllTeachers(){
         if(teacherDb.isEmpty()){
@@ -65,5 +74,15 @@ public class StudentRepository {
         }
         teacherDb.clear();
         studentsOfATeacher.clear();
+        studentDb.clear();
+
+//        HashSet<String> std_hash = new HashSet<>();
+//        for(String teacher : studentsOfATeacher.keySet()) {
+//            std_hash.addAll(studentsOfATeacher.get(teacher));
+//        }
+//        for(String student : std_hash) {
+//            studentDb.remove(student);
+//        }
+
     }
 }
